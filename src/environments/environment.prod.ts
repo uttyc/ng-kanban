@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  kanbanApiBaseUrl: 'https://localhost:7002/api/'
 };

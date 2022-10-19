@@ -1,0 +1,37 @@
+<div class="d-flex flex-column h-auto" style="width:320px;">
+  <input type="hidden" name="list_id" value="{{listId}}"/>
+
+  <div class="row p-2">
+    <div class="col-md-10">
+      <ng-container *ngIf="editMode">
+        <input type="text" class="form-control form-control-lg fw-bold" value="{{listName}}" [(ngModel)]="listName"
+               (keydown)="saveList($event)"/>
+      </ng-container>
+      <ng-container *ngIf="!editMode">
+        <h4 (click)="toggleMode(true)" style="word-wrap: break-word">{{listName}}</h4>
+      </ng-container>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-sm text-danger" (click)="deleteList(listId)"><i class="bi bi-x-lg"></i></button>
+
+    </div>
+
+    <div class="row">
+      <div *ngFor="let card of cards">
+        <div class="card-item" pDraggable="cards" pDroppable="cards" (onDrop)="drop($event)" (onDragStart)="dragStart($event, card)" (onDragEnd)="dragEnd($event)">
+          <app-card [description]="card.description" [dateCreated]="card.dateCreated"
+                    [deadline]="card.deadline" [cardId]="card.id" [listId]="card.listId"
+                    (outputFromChild)="reloadList($event)"
+                    (hover)="toggleDelete($event)"></app-card>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row" (click)="toggleMode(false)">
+    <input type="text" class="form-control m-2" placeholder="+ Add Card" (keydown)="saveCard($event)"
+           [(ngModel)]="cardDesc"/>
+  </div>
+</div>
+
+

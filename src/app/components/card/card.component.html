@@ -1,0 +1,31 @@
+<!--<div class="flex-column align-items-start m-1 p-3 shadow-sm rounded bg-white" style="width: 250px" (mouseenter)="toggleDelete()" (mouseleave)="toggleDelete()">-->
+  <!--<div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">{{description}}</h5>
+    <small>{{dateCreated | date: 'dd.MM.yyyy'}}</small>
+  </div>
+
+  <small>Deadline : {{deadline | date: 'dd.MM.yyyy'}}</small>
+  <div class="d-flex flex-row justify-content-end">
+    <ng-container *ngIf="!isHidden">
+      <button class="btn btn-sm text-danger" (click)="deleteCard(cardId)" ><i class="bi bi-x-lg"></i></button>
+    </ng-container>
+  </div>-->
+  <!--<p-card [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+    <p class="text-bold">{{description}}</p>
+    <ng-template pTemplate="footer">
+      {{dateCreated | date: 'dd.MM.yyyy'}}
+    </ng-template>
+
+  </p-card>-->
+  <p-card styleClass="shadow-2 m-1" [style]="{width: '15rem', 'margin-bottom': '2em'}" (mouseenter)="toggleDelete()" (mouseleave)="toggleDelete()">
+    <ng-template pTemplate="content" >
+      <p style="word-wrap: break-word">{{description}}</p>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <p>Deadline : {{deadline | date: 'dd.MM.yyyy'}}</p>
+      <ng-container *ngIf="!isHidden">
+        <button class="btn btn-sm text-danger" (click)="deleteCard(cardId)"><i class="bi bi-x-lg"></i></button>
+      </ng-container>
+    </ng-template>
+  </p-card>
+<!--</div>-->
