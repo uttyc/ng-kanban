@@ -1,0 +1,33 @@
+.board {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 0;
+  width: 100%;
+  height: auto;
+  overflow-x: auto;
+  margin: 1px;
+  left:1%;
+  top:10%;
+}
+::-webkit-scrollbar {
+  width: 15px;
+  height: 12px;
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(60,60,60,0.5);
+  border-radius: 10px;
+
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(30,30,30,0.5);
+
+}
+
+.list-add {
+  width: 100px;
+  margin-top: -23%;
+}

@@ -1,8 +1,15 @@
-<div class="d-flex flex-wrap overflow-auto">
-  <div *ngFor="let list of lists" class="shadow-sm m-2 rounded bg-light" (click)="toggleMode(false)" (changeEditMode)="changeMode($event)">
-    <app-list [listId]="list.id"></app-list>
+<div class="board">
+  <div *ngFor="let list of lists" class="shadow-sm m-2 rounded bg-light" (click)="toggleMode(false)"
+       (changeEditMode)="changeMode($event)">
+    <div class="list-item">
+      <app-list [listId]="list.id"></app-list>
+    </div>
   </div>
-  <input type="text" class="form-control border-0 shadow-none" placeholder="+ Add List" (keydown)="saveList($event)" [(ngModel)]="listDesc" />
+  <div class="list-add">
+    <input type="text" class="form-control border-0 shadow-none" placeholder="+ Add List" (keydown)="saveList($event)"
+           [(ngModel)]="listDesc"/>
+
+  </div>
 </div>
 
 

@@ -13,13 +13,15 @@ export class ListComponent implements OnInit {
   cards: Card[] = []
   lists: List[] = []
   cardDesc: string = ""
+  droppedCard: Card = <Card>{};
   isHidden: boolean = true
   editMode: boolean = false;
+  visible: boolean = false;
   draggedCard: Card = <Card>{};
+  emptyGuid: string = '00000000-0000-0000-0000-000000000000'
   @Input() listId: string = ""
   @Input() listName: string = ""
-  @Output() outputFromChild: EventEmitter<string> = new EventEmitter();
-  @Output() hover: EventEmitter<boolean> = new EventEmitter();
+  @Output() onReload: EventEmitter<string> = new EventEmitter();
   @Output() changeMode: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private kanbanService: KanbanService) {
@@ -76,59 +78,19 @@ export class ListComponent implements OnInit {
   }
 
   reloadList(event: any) {
-    this.outputFromChild.emit(this.listId)
+    this.onReload.emit(this.listId)
     this.initCards()
 
   }
-
-  toggleDelete(event: any) {
-    this.hover.emit(this.isHidden)
-  }
-
   toggleMode(mode: boolean) {
     this.editMode = mode
     this.changeMode.emit(this.editMode)
   }
-
-  dragStart(event: any, card: Card) {
-    this.draggedCard = card
-    console.log(this.draggedCard)
+  toggleVisibility() {
+    this.visible = !this.visible
   }
 
-  dragEnd(event: any) {
-    if (this.draggedCard) {
-      console.log(event)
-      let droppedListId = this.findDroppedListId(this.draggedCard);
-      console.log("Before drop : ")
-      console.log(this.draggedCard.listId)
-      let moveCardModel = <MoveCard>{
-        cardToMove: this.draggedCard,
-        targetListId: droppedListId
-      }
-      this.kanbanService.moveCard(moveCardModel).subscribe(res => {
-        console.log("After drop : ")
-        console.log(res)
-      });
-      // this.cards = [...this.cards, this.draggedCard];
-      this.draggedCard = <Card>{}
-    }
-  }
 
-  drop(event: any) {
-    this.draggedCard = <Card>{}
-  }
 
-  findDroppedListId(card: Card) {
-    let index = "";
-    console.log("Lists")
-    console.log(this.lists)
-    for (let i = 0; i < this.lists.length; i++) {
-      if (card.listId === this.lists[i].id) {
-        index = this.lists[i].id;
 
-        break;
-      }
-    }
-    return index;
-  }
 }

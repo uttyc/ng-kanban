@@ -3,4 +3,5 @@ export interface List {
   description: string;
   dateCreated: string;
   dateUpdated: string;
+  cards: List[];
 }

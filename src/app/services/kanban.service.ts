@@ -28,7 +28,9 @@ export class KanbanService {
   }
   moveCard(moveCard: MoveCard): Observable<any> {
     const url = environment.kanbanApiBaseUrl + 'Cards/MoveCard'
-    return this.http.put(url, moveCard).pipe(
+    console.log("Move card model")
+    console.log(moveCard)
+    return this.http.post(url, moveCard).pipe(
       map((res: any) => res),
       catchError((err) => throwError(err))
     );

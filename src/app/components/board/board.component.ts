@@ -1,18 +1,21 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { List } from '../../models/list';
 import { KanbanService } from '../../services/kanban.service';
+import { Card } from "../../models/card";
+import {ListComponent} from "../list/list.component";
 
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent implements OnInit{
   lists: List[] = []
   listDesc: string = ""
   @Output() changeEditMode: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private kanbanService: KanbanService) { }
+
   editMode: boolean = false;
 
   ngOnInit(): void {
@@ -41,4 +44,6 @@ export class BoardComponent implements OnInit {
   changeMode(event: any) {
     this.changeEditMode.emit(this.editMode)
   }
+
+
 }

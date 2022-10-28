@@ -9,14 +9,13 @@ import { KanbanService } from './services/kanban.service';
 import { BoardComponent } from './components/board/board.component';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import {DragDropModule} from 'primeng/dragdrop';
-
+import { DragDropModule } from '@angular/cdk/drag-drop'
 @NgModule({
   declarations: [
     AppComponent,
     CardComponent,
     ListComponent,
-    BoardComponent
+    BoardComponent,
   ],
   imports: [
     BrowserModule,
