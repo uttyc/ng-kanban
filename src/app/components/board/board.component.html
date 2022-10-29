@@ -1,12 +1,12 @@
-<div class="board">
-  <div *ngFor="let list of lists" class="shadow-sm m-2 rounded bg-light" (click)="toggleMode(false)"
+<div class="board d-flex flex-row">
+  <div *ngFor="let list of lists" class="shadow-sm m-1 rounded bg-light" (click)="toggleMode(false)"
        (changeEditMode)="changeMode($event)">
     <div class="list-item">
       <app-list [listId]="list.id"></app-list>
     </div>
   </div>
-  <div class="list-add">
-    <input type="text" class="form-control border-0 shadow-none" placeholder="+ Add List" (keydown)="saveList($event)"
+  <div class="p-2">
+    <input type="text" class="form-control border-0 shadow-none bg-transparent" placeholder="+ Add List" (keydown)="saveList($event)"
            [(ngModel)]="listDesc"/>
 
   </div>

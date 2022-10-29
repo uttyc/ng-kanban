@@ -1,15 +1,31 @@
-<div class="d-flex" (mouseenter)="toggleDelete()"
+<div class="d-flex kanban-card" (mouseenter)="toggleDelete()"
      (mouseleave)="toggleDelete()">
+  <p-dialog [(visible)]="showMoveDialog" [style]="{width: '50vw'}">
+    <ng-template pTemplate="header">
+      Move Card
+    </ng-template>
+    <p class="m-0 h-8rem">
+      Move {{description}} to
+      <p-dropdown [options]="lists" [(ngModel)]="selectedList" optionLabel="description"></p-dropdown>
+    </p>
+    <ng-template pTemplate="footer">
+      <p-button (click)="moveCard()"><i class="bi bi-check"></i></p-button>
+    </ng-template>
+  </p-dialog>
+  <!--  <p-dialog header="Move Card" [maximizable]="true" [(visible)]="showMoveDialog" [style]="{width: '50vw'}">-->
+  <!--    Move {{description}} to <p-dropdown [options]="lists" [(ngModel)]="selectedList"  optionLabel="description" optionValue="id"></p-dropdown>-->
+  <!--  </p-dialog>-->
   <p-card styleClass="shadow-2" [style]="{width: '18rem', 'margin-bottom': '1em'}"
-          >
+  >
     <ng-template pTemplate="content">
       <div class="row">
         <div class="col-md-10" style="word-wrap: break-word">
-          <p >{{description}}</p>
+          <p>{{description}}</p>
 
         </div>
         <div class="col-md-1">
-          <button class="btn btn-sm text-danger" *ngIf="!isHidden" (click)="deleteCard(cardId)"><i class="bi bi-trash"></i></button>
+          <button class="btn btn-sm text-danger" *ngIf="!isHidden" (click)="deleteCard(cardId)"><i
+            class="bi bi-trash"></i></button>
 
         </div>
 
@@ -19,7 +35,17 @@
 
     <!--    </ng-template>-->
     <ng-template pTemplate="footer">
-      <p>Deadline : {{deadline | date: 'dd.MM.yyyy'}}</p>
+      <div class="row">
+        <div class="col-md-10">
+          <p>Deadline : {{deadline | date: 'dd.MM.yyyy'}}</p>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-sm text-primary" *ngIf="!isHidden" (click)="showDialog()"><i
+            class="bi bi-arrows-move"></i></button>
+
+        </div>
+      </div>
     </ng-template>
   </p-card>
 </div>
+

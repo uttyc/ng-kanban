@@ -9,7 +9,10 @@ import { KanbanService } from './services/kanban.service';
 import { BoardComponent } from './components/board/board.component';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown'
 import { DragDropModule } from '@angular/cdk/drag-drop'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +26,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
     FormsModule,
     CardModule,
     ButtonModule,
-    DragDropModule
+    DragDropModule,
+    BrowserAnimationsModule,
+    DialogModule,
+    DropdownModule
   ],
   providers: [KanbanService],
   bootstrap: [AppComponent]

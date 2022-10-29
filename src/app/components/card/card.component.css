@@ -1,0 +1,6 @@
+.kanban-card {
+  resize: vertical;
+  height: 100%;
+  width: 18rem;
+  margin-bottom: 1em;
+}

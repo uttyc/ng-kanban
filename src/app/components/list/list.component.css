@@ -7,7 +7,7 @@ input, input:hover, input:focus, input:active {
   outline-offset: 0;
   box-shadow: none;
 }
-.list-add {
-  background: red;
-  color: #0a53be;
+.kanban-list {
+  width:20rem;
+  max-height: 100%;
 }
