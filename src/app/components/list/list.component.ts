@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Card} from '../../models/card';
 import {List} from '../../models/list';
 import {KanbanService} from '../../services/kanban.service';
+import {CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem, CDK_DROP_LIST_GROUP} from '@angular/cdk/drag-drop';
 import {MoveCard} from "../../models/movecard";
-
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -88,6 +88,27 @@ export class ListComponent implements OnInit {
   }
   toggleVisibility() {
     this.visible = !this.visible
+  }
+  drop(event: CdkDragDrop<Card[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+
+      let moveCardModel = <MoveCard>{
+        cardToMove: event.item.data,
+        targetListId: this.listId
+      }
+      this.kanbanService.moveCard(moveCardModel).subscribe(res => {
+        this.initCards()
+      })
+
+    }
   }
 
 

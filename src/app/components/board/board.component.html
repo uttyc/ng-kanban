@@ -1,4 +1,4 @@
-<div class="board d-flex flex-row">
+<div class="board d-flex flex-row" cdkDropListGroup>
   <div *ngFor="let list of lists" class="shadow-sm m-1 rounded bg-light" (click)="toggleMode(false)"
        (changeEditMode)="changeMode($event)">
     <div class="list-item">
