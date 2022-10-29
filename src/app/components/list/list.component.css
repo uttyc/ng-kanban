@@ -18,8 +18,15 @@ input, input:hover, input:focus, input:active {
   cursor: move;
 }
 .cdk-drag-animating {
+
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-.card-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+.card-list.cdk-drop-list-dragging .card-item:not(.cdk-drag-placeholder) {
+
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+.cdk-drag.cdk-drag-preview .card-item {
+  transform: rotate(15deg);
+
+}
+
