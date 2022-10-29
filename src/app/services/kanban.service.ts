@@ -49,6 +49,13 @@ export class KanbanService {
       catchError((err) => throwError(err))
     )
   }
+  updateCard(cardId: string, card: Card): Observable<any> {
+    const url = environment.kanbanApiBaseUrl + `Cards/${cardId}`;
+    return this.http.put(url, card).pipe(
+      map((res: any) => res),
+      catchError((err) => throwError(err))
+    )
+  }
   saveList(list: List): Observable<any> {
     const url = environment.kanbanApiBaseUrl + 'Lists';
     return this.http.post(url, list).pipe(

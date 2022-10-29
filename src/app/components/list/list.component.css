@@ -1,8 +1,6 @@
 input, input:hover, input:focus, input:active {
   background: transparent;
   border: 0;
-  /*border-style: none;*/
-  /*border-color: transparent;*/
   outline: none;
   outline-offset: 0;
   box-shadow: none;
@@ -27,6 +25,5 @@ input, input:hover, input:focus, input:active {
 }
 .cdk-drag.cdk-drag-preview .card-item {
   transform: rotate(15deg);
-
 }
 

@@ -1,21 +1,10 @@
 <div class="d-flex kanban-card" (mouseenter)="toggleDelete()"
      (mouseleave)="toggleDelete()">
-  <p-dialog [(visible)]="showMoveDialog" [style]="{width: '50vw'}">
-    <ng-template pTemplate="header">
-      Move Card
-    </ng-template>
-    <p class="m-0 h-8rem">
-      Move {{description}} to
-      <p-dropdown [options]="lists" [(ngModel)]="selectedList" optionLabel="description"></p-dropdown>
-    </p>
-    <ng-template pTemplate="footer">
-      <p-button (click)="moveCard()"><i class="bi bi-check"></i></p-button>
-    </ng-template>
-  </p-dialog>
+
   <!--  <p-dialog header="Move Card" [maximizable]="true" [(visible)]="showMoveDialog" [style]="{width: '50vw'}">-->
   <!--    Move {{description}} to <p-dropdown [options]="lists" [(ngModel)]="selectedList"  optionLabel="description" optionValue="id"></p-dropdown>-->
   <!--  </p-dialog>-->
-  <p-card styleClass="shadow-2" [style]="{width: '18rem', 'margin-bottom': '1em'}"
+  <p-card styleClass="shadow-2" [style]="{width: '18rem', 'margin-bottom': '1em'}" (click)="showEditDialog()"
   >
     <ng-template pTemplate="content">
       <div class="row">
@@ -36,8 +25,13 @@
     <!--    </ng-template>-->
     <ng-template pTemplate="footer">
       <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-8">
           <p>Deadline : {{deadline | date: 'dd.MM.yyyy'}}</p>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-sm text-warning" *ngIf="!isHidden" (click)="showEditDialog()"><i
+            class="bi bi-pen-fill"></i></button>
+
         </div>
         <div class="col-md-2">
           <button class="btn btn-sm text-primary" *ngIf="!isHidden" (click)="showDialog()"><i
@@ -48,4 +42,29 @@
     </ng-template>
   </p-card>
 </div>
-
+<p-dialog [(visible)]="showMoveDialog" [style]="{width: '50vw'}">
+  <ng-template pTemplate="header">
+    <h4>Move Card</h4>
+  </ng-template>
+  <p class="m-0 h-8rem">
+    Move {{description}} to
+    <p-dropdown [options]="lists" [(ngModel)]="selectedList" optionLabel="description"></p-dropdown>
+  </p>
+  <ng-template pTemplate="footer">
+    <p-button (click)="moveCard()"><i class="bi bi-check"></i></p-button>
+  </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="showUpdateDialog" [style]="{width: '50vw'}">
+  <ng-template pTemplate="header">
+    <h4>Update Card</h4>
+  </ng-template>
+  <div class="row">
+      <input class="form-control m-1" type="text" value="{{description}}" [(ngModel)]="description" />
+  </div>
+  <div class="row">
+    <input type="datetime-local" class="form-control m-1" value="{{deadline}}" [(ngModel)]="deadline">
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button (click)="updateCard()"><i class="bi bi-check"></i></p-button>
+  </ng-template>
+</p-dialog>

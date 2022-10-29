@@ -59,7 +59,7 @@ export class ListComponent implements OnInit {
   }
 
   saveList(event: any) {
-    if (event.code == "Enter") {
+    if (event.code == "Enter" || event.code == "NumpadEnter") {
       const list = <List>{
         id: this.listId,
         description: this.listName

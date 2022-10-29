@@ -3,7 +3,7 @@ import {KanbanService} from '../../services/kanban.service';
 import {Dialog} from 'primeng/dialog'
 import {List} from "../../models/list";
 import {MoveCard} from "../../models/movecard";
-
+import { Card } from "../../models/card"
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -18,6 +18,7 @@ export class CardComponent implements OnInit {
   @Output() onReload: EventEmitter<string> = new EventEmitter();
   isHidden: boolean = true
   showMoveDialog: boolean = false
+  showUpdateDialog: boolean = false;
   lists: List[] = []
   selectedList: List = <List>{}
 
@@ -59,6 +60,22 @@ export class CardComponent implements OnInit {
       location.reload()
     })
   }
-
-
+  showEditDialog() {
+    if(this.deadline != '')
+      this.deadline = this.deadline.split('.')[0]
+    console.log(this.deadline)
+    this.showUpdateDialog = true
+  }
+  updateCard() {
+    let cardToUpdate = <Card>{
+      id: this.cardId,
+      listId: this.listId,
+      description: this.description,
+      deadline: this.deadline
+    }
+    this.kanbanService.updateCard(this.cardId, cardToUpdate).subscribe(res => {
+      this.showUpdateDialog = false
+      location.reload()
+    })
+  }
 }
